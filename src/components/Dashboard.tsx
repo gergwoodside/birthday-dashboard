@@ -26,7 +26,7 @@ const Dashboard = ({ birthdays }: Props) => {
   return (
     <>
       <div className="dash-text m-5 p-5">
-        <h1 className="display-1 text-center">
+        <h1 className="display-2 text-center">
           {" "}
           <CurrentTime />
         </h1>
