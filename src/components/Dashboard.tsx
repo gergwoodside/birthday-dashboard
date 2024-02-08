@@ -1,4 +1,5 @@
 import BirthdayMessage from "./BirthdayMessage";
+import CurrentTime from "./CurrentTime";
 
 interface Birthday {
   name: string;
@@ -9,7 +10,7 @@ interface Props {
   [key: string]: Birthday[];
 }
 
-let today = new Date();
+const today = new Date();
 
 const formattedDate = today
   .toLocaleDateString("en-GB", {
@@ -24,8 +25,12 @@ const formattedDate = today
 const Dashboard = ({ birthdays }: Props) => {
   return (
     <>
-      <div className="dash-text">
-        <h1 className="display-1 text-center">{formattedDate}</h1>
+      <div className="dash-text m-5 p-5">
+        <h1 className="display-1 text-center">
+          {" "}
+          <CurrentTime />
+        </h1>
+        <hr></hr>
         <BirthdayMessage birthdays={birthdays} today={formattedDate} />
       </div>
     </>
