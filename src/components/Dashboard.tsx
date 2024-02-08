@@ -1,4 +1,3 @@
-
 import BirthdayMessage from "./BirthdayMessage";
 
 interface Birthday {
@@ -26,7 +25,7 @@ const Dashboard = ({ birthdays }: Props) => {
   return (
     <>
       <div className="dash-text">
-        <p className="today-date">{formattedDate}</p>
+        <h1 className="display-1">{formattedDate}</h1>
         <BirthdayMessage birthdays={birthdays} today={formattedDate} />
       </div>
     </>
