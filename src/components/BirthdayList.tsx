@@ -11,31 +11,33 @@ interface Props {
 
 const BirthdayList = ({ birthdays, onDelete }: Props) => {
   return (
-    <table className="table table-bordered">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Birthday</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {birthdays.map((birthday, index) => (
-          <tr key={birthday.id}>
-            <td>{birthday.name}</td>
-            <td>{birthday.date}</td>
-            <td>
-              <button
-                onClick={() => onDelete(birthday.id)}
-                className="btn btn-danger"
-              >
-                Delete
-              </button>
-            </td>
+    <div className="p-3">
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Birthday</th>
+            <th></th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {birthdays.map((birthday, index) => (
+            <tr key={birthday.id}>
+              <td>{birthday.name}</td>
+              <td>{birthday.date}</td>
+              <td>
+                <button
+                  onClick={() => onDelete(birthday.id)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

@@ -41,28 +41,6 @@ const Navigation = ({ currentView, onSelectView }: Props) => {
         </div>
       </nav>
     </>
-    // <div className="nav">
-    //   <button
-    //     className={
-    //       currentView === "Dashboard"
-    //         ? "btn btn-primary"
-    //         : "btn btn-outline-primary"
-    //     }
-    //     onClick={() => onSelectView("Dashboard")}
-    //   >
-    //     Dashboard
-    //   </button>
-    //   <button
-    //     className={
-    //       currentView === "Configuration"
-    //         ? "btn btn-primary"
-    //         : "btn btn-outline-primary"
-    //     }
-    //     onClick={() => onSelectView("Configuration")}
-    //   >
-    //     Configuration
-    //   </button>
-    // </div>
   );
 };
 

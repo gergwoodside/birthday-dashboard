@@ -25,7 +25,7 @@ export const BirthdayMessage = ({ birthdays, today }: Props) => {
   const birthdayMessages = birthdays
     .filter((person) => person.date.slice(-5) === today.slice(-5))
     .map((person) => (
-      <h1 className="display-4" key={person.name}>
+      <h1 className="display-4 text-center" key={person.name}>
         {person.name} turns{" "}
         {parseInt(today.slice(0, 4)) - parseInt(person.date.slice(0, 4))} today!
       </h1>

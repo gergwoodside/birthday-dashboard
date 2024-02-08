@@ -25,7 +25,7 @@ const Dashboard = ({ birthdays }: Props) => {
   return (
     <>
       <div className="dash-text">
-        <h1 className="display-1">{formattedDate}</h1>
+        <h1 className="display-1 text-center">{formattedDate}</h1>
         <BirthdayMessage birthdays={birthdays} today={formattedDate} />
       </div>
     </>

@@ -13,8 +13,8 @@ interface Props {
 
 const BirthdayForm = ({ handleSubmit, person, setPerson }: Props) => {
   return (
-    <div className="birthdayForm">
-      <h1>Birthday Tracker</h1>
+    <div className="p-3">
+      <h1 className="text-center m-3">🎂 Birthday Tracker 🎂</h1>
       <form id="person-form" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
