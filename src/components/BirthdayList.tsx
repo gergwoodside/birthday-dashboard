@@ -14,7 +14,6 @@ const BirthdayList = ({ birthdays, onDelete }: Props) => {
     <table className="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Name</th>
           <th>Birthday</th>
           <th></th>
@@ -23,7 +22,6 @@ const BirthdayList = ({ birthdays, onDelete }: Props) => {
       <tbody>
         {birthdays.map((birthday, index) => (
           <tr key={birthday.id}>
-            <td>{birthday.id}</td>
             <td>{birthday.name}</td>
             <td>{birthday.date}</td>
             <td>
