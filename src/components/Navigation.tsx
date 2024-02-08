@@ -1,5 +1,3 @@
-import React from "react";
-
 interface Props {
   currentView: string;
   onSelectView: (item: string) => void;

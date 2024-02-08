@@ -1,20 +1,20 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import "./App.css";
-import Navigation from "./Navigation";
+import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
 import BirthdayList from "./components/BirthdayList";
 
 interface Birthday {
+  id: number;
   name: string;
   date: string;
 }
 
 function App() {
   const [currentView, setCurrentView] = useState("Dashboard");
-  const [birthdays, setBirthdays] = useState<Birthday[]>([
-    { name: "Greg", date: "1997-02-07" },
-    { name: "Hallie", date: "2024-02-07" },
-  ]);
+  const [birthdays, setBirthdays] = useState<Birthday[]>(
+    JSON.parse(localStorage.getItem("BIRTHDAY_LIST") as string) || []
+  );
   const [person, setPerson] = useState({
     name: "",
     date: "",
@@ -22,9 +22,26 @@ function App() {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log(person);
-    setBirthdays([...birthdays, person]);
+    const newPerson = { ...person, id: new Date().getTime() }; // Add a unique ID
+    setBirthdays([...birthdays, newPerson]);
+    setPerson({ name: "", date: "" }); // Reset the person object
   };
+
+  const handleDelete = (id: number) => {
+    setBirthdays(birthdays.filter((birthday) => birthday.id !== id));
+  };
+
+  useEffect(() => {
+    window.localStorage.setItem("BIRTHDAY_LIST", JSON.stringify(birthdays));
+  }, [birthdays]);
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("BIRTHDAY_LIST");
+    if (data) {
+      console.log(JSON.parse(data));
+      setBirthdays(JSON.parse(data));
+    }
+  }, []);
 
   return (
     <>
@@ -32,7 +49,7 @@ function App() {
       {currentView === "Configuration" && (
         <>
           <div className="birthdayForm">
-            <form onSubmit={handleSubmit}>
+            <form id="person-form" onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
                   Name:{" "}
@@ -44,6 +61,7 @@ function App() {
                   id="name"
                   type="text"
                   className="form-control"
+                  value={person.name}
                 />
               </div>
               <div className="mb-3">
@@ -57,15 +75,14 @@ function App() {
                   id="date"
                   type="date"
                   className="form-control"
+                  value={person.date}
                 />
               </div>
-              <button className="btn btn-primary" type="submit">
-                Submit
-              </button>
+              <button className="btn btn-primary">Submit</button>
             </form>
           </div>
           <div className="birthdayList">
-            <BirthdayList birthdays={birthdays} />
+            <BirthdayList birthdays={birthdays} onDelete={handleDelete} />
           </div>
         </>
       )}
