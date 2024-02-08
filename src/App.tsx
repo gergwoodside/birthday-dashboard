@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import "./App.css";
 import Navigation from "./Navigation";
-import Dashboard from "./Dashboard";
-import BirthdayList from "./BirthdayList";
+import Dashboard from "./components/Dashboard";
+import BirthdayList from "./components/BirthdayList";
 
 interface Birthday {
   name: string;
