@@ -11,6 +11,7 @@ interface Props {
 import React from "react";
 
 interface Birthday {
+  id: number;
   name: string;
   date: string;
 }
@@ -22,17 +23,44 @@ interface Props {
 
 export const BirthdayMessage = ({ birthdays, today }: Props) => {
   // Filter birthdays to find those that match 'today' and then map to JSX elements
-  const birthdayMessages = birthdays
-    .filter((person) => person.date.slice(-5) === today.slice(-5))
-    .map((person) => (
-      <h1 className="display-5 text-center" key={person.name}>
-        {person.name} turns{" "}
-        {parseInt(today.slice(0, 4)) - parseInt(person.date.slice(0, 4))} today!
-      </h1>
-    ));
+  const todayBirthdays = birthdays.filter(
+    (person) => person.date.slice(-5) === today.slice(-5)
+  );
+
+  const noBirthdaysEntered = (
+    <ul className="list-group">
+      <li className="list-group-item">
+        <h1 className="display-5 text-center">
+          No birthdays set, set birthdays in the Configuration menu.
+        </h1>
+      </li>
+    </ul>
+  );
+
+  const noBirthdaysToday = (
+    <ul className="list-group">
+      <li className="list-group-item">
+        <h1 className="display-5 text-center">No birthdays today.</h1>
+      </li>
+    </ul>
+  );
+
+  const birthdayMessages = todayBirthdays.map((person) => (
+    <ul key={person.id} className="list-group">
+      <li key={person.id} className="list-group-item">
+        <h1 className="display-5 text-center">
+          {person.name} turns{" "}
+          {parseInt(today.slice(0, 4)) - parseInt(person.date.slice(0, 4))}{" "}
+          today!
+        </h1>
+      </li>
+    </ul>
+  ));
 
   // Return a fragment containing all matching birthday messages
-  return <>{birthdayMessages}</>;
+  return (
+    <>{todayBirthdays.length === 0 ? noBirthdaysToday : birthdayMessages}</>
+  );
 };
 
 export default BirthdayMessage;

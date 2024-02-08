@@ -2,6 +2,7 @@ import BirthdayMessage from "./BirthdayMessage";
 import CurrentTime from "./CurrentTime";
 
 interface Birthday {
+  id: number;
   name: string;
   date: string;
 }

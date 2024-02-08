@@ -11,7 +11,7 @@ interface Props {
 
 const BirthdayList = ({ birthdays, onDelete }: Props) => {
   return (
-    <div className="p-3">
+    <div>
       <table className="table table-bordered">
         <thead>
           <tr>
