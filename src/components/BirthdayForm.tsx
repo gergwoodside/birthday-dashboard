@@ -14,6 +14,7 @@ interface Props {
 const BirthdayForm = ({ handleSubmit, person, setPerson }: Props) => {
   return (
     <div className="birthdayForm">
+      <h1>Birthday Tracker</h1>
       <form id="person-form" onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
@@ -30,7 +31,7 @@ const BirthdayForm = ({ handleSubmit, person, setPerson }: Props) => {
         </div>
         <div className="mb-3">
           <label htmlFor="date" className="form-label">
-            Date:{" "}
+            Birthday:{" "}
           </label>
           <input
             onChange={setPerson}
