@@ -1,3 +1,4 @@
+import moment from "moment";
 import BirthdayMessage from "./BirthdayMessage";
 import CurrentTime from "./CurrentTime";
 
@@ -13,15 +14,7 @@ interface Props {
 
 const today = new Date();
 
-const formattedDate = today
-  .toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  })
-  .split("/")
-  .reverse()
-  .join("-");
+const formattedDate = moment(today).format();
 
 const Dashboard = ({ birthdays }: Props) => {
   return (
@@ -29,7 +22,9 @@ const Dashboard = ({ birthdays }: Props) => {
       <div className="dash-text m-5 p-5">
         <h1 className="display-2 text-center">
           {" "}
-          <CurrentTime />
+          <CurrentTime format="LL" />
+          <br />
+          <CurrentTime format="LTS" />
         </h1>
         <hr></hr>
         <BirthdayMessage birthdays={birthdays} today={formattedDate} />

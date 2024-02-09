@@ -8,6 +8,7 @@ interface Props {
   today: string;
 }
 
+import moment from "moment";
 import React from "react";
 
 interface Birthday {
@@ -23,10 +24,11 @@ interface Props {
 
 export const BirthdayMessage = ({ birthdays, today }: Props) => {
   // Filter birthdays to find those that match 'today' and then map to JSX elements
-  const todayBirthdays = birthdays.filter(
-    (person) => person.date.slice(-5) === today.slice(-5)
-  );
-
+  const todayBirthdays = birthdays.filter((person) => {
+    return (
+      moment(person.date).format("MM-DD") === moment(today).format("MM-DD")
+    );
+  });
   const noBirthdaysEntered = (
     <ul className="list-group">
       <li className="list-group-item">

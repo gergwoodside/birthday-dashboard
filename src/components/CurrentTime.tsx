@@ -1,7 +1,11 @@
 import moment from "moment";
 import { useEffect, useState } from "react";
 
-const CurrentTime = () => {
+interface Props {
+  format: string;
+}
+
+const CurrentTime = ({ format }: Props) => {
   const [date, setDate] = useState(new Date());
   const refreshClock = () => {
     setDate(new Date());
@@ -9,12 +13,7 @@ const CurrentTime = () => {
   useEffect(() => {
     const timerId = setInterval(refreshClock, 1000);
   }, []);
-  return (
-    <>
-      <div>{moment(date).format("dddd, MMMM Do")}</div>
-      <div>{moment(date).format("h:mm:ss a")}</div>
-    </>
-  );
+  return <>{moment(date).format(format)}</>;
 };
 
 export default CurrentTime;
