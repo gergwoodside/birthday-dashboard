@@ -52,7 +52,9 @@ function App() {
             />
           </div>
           <div className="birthdayList">
-            <BirthdayList birthdays={birthdays} onDelete={handleDelete} />
+            {birthdays.length > 0 && (
+              <BirthdayList birthdays={birthdays} onDelete={handleDelete} />
+            )}
           </div>
         </>
       )}
