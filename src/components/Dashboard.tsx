@@ -1,5 +1,5 @@
 import moment from "moment";
-import BirthdayMessage from "./BirthdayMessage";
+import BirthdayMessage from "./BirthdayMessageToday";
 import CurrentTime from "./CurrentTime";
 
 interface Birthday {
@@ -17,6 +17,7 @@ const today = new Date();
 const formattedDate = moment(today).format();
 
 const Dashboard = ({ birthdays }: Props) => {
+  console.log(birthdays.length);
   return (
     <>
       <div className="dash-text m-5 p-5">

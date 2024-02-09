@@ -29,12 +29,13 @@ export const BirthdayMessage = ({ birthdays, today }: Props) => {
       moment(person.date).format("MM-DD") === moment(today).format("MM-DD")
     );
   });
+
   const noBirthdaysEntered = (
     <ul className="list-group">
       <li className="list-group-item">
-        <h1 className="display-5 text-center">
+        <h3 className="text-center set-birthdays-alert">
           No birthdays set, set birthdays in the Configuration menu.
-        </h1>
+        </h3>
       </li>
     </ul>
   );
@@ -42,7 +43,9 @@ export const BirthdayMessage = ({ birthdays, today }: Props) => {
   const noBirthdaysToday = (
     <ul className="list-group">
       <li className="list-group-item">
-        <h1 className="display-5 text-center">No birthdays today.</h1>
+        <h1 className="display-5 text-center set-birthdays-alert">
+          No birthdays today.
+        </h1>
       </li>
     </ul>
   );
@@ -61,7 +64,13 @@ export const BirthdayMessage = ({ birthdays, today }: Props) => {
 
   // Return a fragment containing all matching birthday messages
   return (
-    <>{todayBirthdays.length === 0 ? noBirthdaysToday : birthdayMessages}</>
+    <>
+      {birthdays.length === 0
+        ? noBirthdaysEntered
+        : todayBirthdays.length === 0
+        ? noBirthdaysToday
+        : birthdayMessages}
+    </>
   );
 };
 
