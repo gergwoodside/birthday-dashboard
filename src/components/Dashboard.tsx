@@ -23,6 +23,8 @@ const Dashboard = ({ birthdays }: Props) => {
       <div className="dash-text m-5 p-5">
         <h1 className="display-2 text-center">
           {" "}
+          <CurrentTime format="dddd" />
+          <br />
           <CurrentTime format="LL" />
           <br />
           <CurrentTime format="LTS" />

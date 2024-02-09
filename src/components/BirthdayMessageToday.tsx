@@ -1,8 +1,3 @@
-interface Birthday {
-  name: string;
-  date: string;
-}
-
 interface Props {
   birthdays: Birthday[];
   today: string;
