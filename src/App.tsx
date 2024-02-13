@@ -11,6 +11,8 @@ interface Birthday {
   date: string;
 }
 
+const today = new Date();
+
 function App() {
   const [currentView, setCurrentView] = useState("Dashboard");
   const [birthdays, setBirthdays] = useState<Birthday[]>(

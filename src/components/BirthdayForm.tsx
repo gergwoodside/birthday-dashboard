@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { FormEvent } from "react";
 
 interface Person {
@@ -10,6 +11,9 @@ interface Props {
   person: Person;
   setPerson: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
+const date = new Date();
+const today = moment(date).format("YYYY-MM-DD");
 
 const BirthdayForm = ({ handleSubmit, person, setPerson }: Props) => {
   return (
@@ -46,6 +50,7 @@ const BirthdayForm = ({ handleSubmit, person, setPerson }: Props) => {
               type="date"
               className="form-control"
               value={person.date}
+              max={today}
             />
           </div>
           <button className="btn btn-primary">Submit</button>

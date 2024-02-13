@@ -17,7 +17,6 @@ const today = new Date();
 const formattedDate = moment(today).format();
 
 const Dashboard = ({ birthdays }: Props) => {
-  console.log(birthdays.length);
   return (
     <>
       <div className="dash-text m-5 p-5">
