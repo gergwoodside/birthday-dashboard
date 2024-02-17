@@ -40,7 +40,7 @@ const Navigation = ({ currentView, onSelectView }: Props) => {
           </button>
           <button
             className={
-              currentView === "Sign-In" ? "nav-link active" : "nav-link"
+              currentView === "Account" ? "nav-link active" : "nav-link"
             }
             id="nav-profile-tab"
             data-bs-toggle="tab"
@@ -49,9 +49,9 @@ const Navigation = ({ currentView, onSelectView }: Props) => {
             role="tab"
             aria-controls="nav-profile"
             aria-selected="false"
-            onClick={() => onSelectView("Sign-In")}
+            onClick={() => onSelectView("Account")}
           >
-            Sign-In
+            Account
           </button>
         </div>
       </nav>

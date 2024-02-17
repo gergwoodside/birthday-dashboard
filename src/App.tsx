@@ -64,7 +64,7 @@ function App() {
         </>
       )}
       {currentView === "Dashboard" && <Dashboard birthdays={birthdays} />}
-      {currentView === "Sign-In" && (
+      {currentView === "Account" && (
         <>
           <SignIn />
           <SignUp />
