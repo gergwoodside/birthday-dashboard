@@ -1,14 +1,14 @@
 import moment from "moment";
 
 interface Birthday {
-  id: number;
-  name: string;
+  id: string;
+  personName: string;
   date: string;
 }
 
 interface Props {
   birthdays: Birthday[];
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 const BirthdayList = ({ birthdays, onDelete }: Props) => {
@@ -25,7 +25,7 @@ const BirthdayList = ({ birthdays, onDelete }: Props) => {
         <tbody>
           {birthdays.map((birthday) => (
             <tr key={birthday.id}>
-              <td>{birthday.name}</td>
+              <td>{birthday.personName}</td>
               <td>{moment(birthday.date).format("L")}</td>
               <td>
                 <button

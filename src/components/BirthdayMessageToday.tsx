@@ -2,8 +2,8 @@ import moment from "moment";
 import React from "react";
 
 interface Birthday {
-  id: number;
-  name: string;
+  id: string;
+  personName: string;
   date: string;
 }
 
@@ -44,7 +44,7 @@ export const BirthdayMessage = ({ birthdays, today }: Props) => {
     <ul key={person.id} className="list-group">
       <li key={person.id} className="list-group-item">
         <h1 className="display-5 text-center">
-          {person.name} turns{" "}
+          {person.personName} turns{" "}
           {parseInt(today.slice(0, 4)) - parseInt(person.date.slice(0, 4))}{" "}
           today!
         </h1>
