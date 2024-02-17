@@ -38,6 +38,21 @@ const Navigation = ({ currentView, onSelectView }: Props) => {
           >
             Configuration
           </button>
+          <button
+            className={
+              currentView === "Sign-In" ? "nav-link active" : "nav-link"
+            }
+            id="nav-profile-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#nav-profile"
+            type="button"
+            role="tab"
+            aria-controls="nav-profile"
+            aria-selected="false"
+            onClick={() => onSelectView("Sign-In")}
+          >
+            Sign-In
+          </button>
         </div>
       </nav>
     </>

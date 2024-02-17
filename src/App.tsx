@@ -4,6 +4,9 @@ import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
 import BirthdayList from "./components/BirthdayList";
 import BirthdayForm from "./components/BirthdayForm";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+import AuthDetails from "./components/auth/AuthDetails";
 
 interface Birthday {
   id: number;
@@ -61,6 +64,13 @@ function App() {
         </>
       )}
       {currentView === "Dashboard" && <Dashboard birthdays={birthdays} />}
+      {currentView === "Sign-In" && (
+        <>
+          <SignIn />
+          <SignUp />
+          <AuthDetails />
+        </>
+      )}
     </>
   );
 }
