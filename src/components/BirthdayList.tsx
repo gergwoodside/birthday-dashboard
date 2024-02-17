@@ -23,7 +23,7 @@ const BirthdayList = ({ birthdays, onDelete }: Props) => {
           </tr>
         </thead>
         <tbody>
-          {birthdays.map((birthday, index) => (
+          {birthdays.map((birthday) => (
             <tr key={birthday.id}>
               <td>{birthday.name}</td>
               <td>{moment(birthday.date).format("L")}</td>
