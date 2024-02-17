@@ -1,8 +1,3 @@
-interface Props {
-  birthdays: Birthday[];
-  today: string;
-}
-
 import moment from "moment";
 import React from "react";
 
