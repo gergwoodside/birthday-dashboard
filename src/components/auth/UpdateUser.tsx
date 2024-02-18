@@ -24,7 +24,7 @@ const UpdateUser = () => {
   return (
     <div className="user-update">
       <p>Display name: {currentDisplayName}</p>
-      <label htmlFor="update">Name</label>
+      <label htmlFor="update">Name: </label>
       <input
         id="update"
         type="text"
