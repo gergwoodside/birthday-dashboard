@@ -13,6 +13,8 @@ import {
   collection,
   getDocs,
   doc,
+  query,
+  where,
 } from "firebase/firestore";
 import { auth, db } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -53,7 +55,12 @@ function App() {
 
   const getBirthdayList = async () => {
     try {
-      const data = await getDocs(birthdayCollectionRef);
+      const data = await getDocs(
+        query(
+          birthdayCollectionRef,
+          where("createdById", "==", auth.currentUser?.uid)
+        )
+      );
       const filteredData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
@@ -61,12 +68,12 @@ function App() {
       console.log({ filteredData });
       setBirthdays(filteredData);
     } catch (err) {
-      console.error("this fucking thing sucks", err);
+      console.error(err);
     }
   };
 
   useEffect(() => {
-    getBirthdayList;
+    auth.currentUser != null && getBirthdayList;
   });
 
   useEffect(() => {
