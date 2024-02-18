@@ -7,7 +7,13 @@ import BirthdayForm from "./components/BirthdayForm";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import AuthDetails from "./components/auth/AuthDetails";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  deleteDoc,
+  collection,
+  getDocs,
+  doc,
+} from "firebase/firestore";
 import { db } from "./firebase";
 
 interface Birthday {
@@ -27,31 +33,37 @@ function App() {
   });
   const birthdayCollectionRef = collection(db, "birthdays");
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const newPerson = { ...person, id: new Date().getTime() }; // Add a unique ID
+    await addDoc(birthdayCollectionRef, {
+      personName: person.name,
+      date: person.date,
+    });
+    getBirthdayList();
     setPerson({ name: "", date: "" }); // Reset the person object
   };
 
-  const handleDelete = (id: string) => {
-    setBirthdays(birthdays.filter((birthday) => birthday.id !== id));
+  const handleDelete = async (id: string) => {
+    const birthdayDoc = doc(db, "birthdays", id);
+    await deleteDoc(birthdayDoc);
+    getBirthdayList();
+  };
+
+  const getBirthdayList = async () => {
+    try {
+      const data = await getDocs(birthdayCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      })) as Birthday[];
+      console.log({ filteredData });
+      setBirthdays(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
-    const getBirthdayList = async () => {
-      try {
-        const data = await getDocs(birthdayCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        })) as Birthday[];
-        console.log({ filteredData });
-        setBirthdays(filteredData);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
     getBirthdayList();
   }, []);
 
