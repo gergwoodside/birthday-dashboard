@@ -10,12 +10,10 @@ interface Props {
   handleSubmit: (event: FormEvent) => void;
   person: Person;
   setPerson: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  today: string;
 }
 
-const date = new Date();
-const today = moment(date).format("YYYY-MM-DD");
-
-const BirthdayForm = ({ handleSubmit, person, setPerson }: Props) => {
+const BirthdayForm = ({ handleSubmit, person, setPerson, today }: Props) => {
   return (
     <>
       <h1 className="text-center m-3">🎂 Birthday Tracker 🎂</h1>

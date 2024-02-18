@@ -5,6 +5,9 @@ interface Props {
   format: string;
 }
 
+const today = new Date();
+export const formattedDate = moment(today).format();
+
 const CurrentTime = ({ format }: Props) => {
   const [date, setDate] = useState(new Date());
   const currentHour = parseInt(moment(date).format("HH"));

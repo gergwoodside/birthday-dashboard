@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import "./App.css";
 import Navigation from "./components/Navigation";
 import Dashboard from "./components/Dashboard";
+import { formattedDate } from "./components/CurrentTime";
 import BirthdayList from "./components/BirthdayList";
 import BirthdayForm from "./components/BirthdayForm";
 import SignIn from "./components/auth/SignIn";
@@ -25,8 +26,6 @@ interface Birthday {
   personName: string;
   date: string;
 }
-
-const today = new Date();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -97,6 +96,7 @@ function App() {
         <>
           <div className="birthday-form">
             <BirthdayForm
+              today={formattedDate}
               handleSubmit={handleSubmit}
               person={person}
               setPerson={(e: React.ChangeEvent<HTMLInputElement>) => {
