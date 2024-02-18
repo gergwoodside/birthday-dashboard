@@ -26,12 +26,17 @@ const UpdateUser = () => {
       <p>Display name: {currentDisplayName}</p>
       <label htmlFor="update">Name: </label>
       <input
+        className="form-control"
         id="update"
         type="text"
-        placeholder="Display name..."
+        placeholder="What should I call you?"
         onChange={(e) => setDisplayName(e.target.value)}
       ></input>
-      <button type="submit" onClick={handleUpdateDisplayName}>
+      <button
+        className="btn btn-primary"
+        type="submit"
+        onClick={handleUpdateDisplayName}
+      >
         Update
       </button>
     </div>
