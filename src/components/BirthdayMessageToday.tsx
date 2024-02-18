@@ -1,6 +1,4 @@
 import moment from "moment";
-import React from "react";
-
 interface Birthday {
   id: string;
   personName: string;
@@ -10,9 +8,10 @@ interface Birthday {
 interface Props {
   birthdays: Birthday[];
   today: string; // Assuming 'today' is a string in the format 'YYYY-MM-DD'
+  loggedIn: boolean;
 }
 
-export const BirthdayMessageToday = ({ birthdays, today }: Props) => {
+export const BirthdayMessageToday = ({ birthdays, today, loggedIn }: Props) => {
   // Filter birthdays to find those that match 'today' and then map to JSX elements
   const todayBirthdays = birthdays.filter((person) => {
     return (
@@ -23,9 +22,15 @@ export const BirthdayMessageToday = ({ birthdays, today }: Props) => {
   const noBirthdaysEntered = (
     <ul className="list-group">
       <li className="list-group-item">
-        <h3 className="text-center set-birthdays-alert">
-          No birthdays set, set birthdays in the Configuration menu.
-        </h3>
+        {
+          <h3 className="text-center set-birthdays-alert">
+            {loggedIn ? (
+              <>No birthdays set, set birthdays in the Configuration menu.</>
+            ) : (
+              <>Log in to track birthdays (Account tab)</>
+            )}
+          </h3>
+        }
       </li>
     </ul>
   );

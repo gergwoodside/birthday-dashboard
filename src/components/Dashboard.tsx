@@ -19,18 +19,20 @@ const Dashboard: React.FC<Props> = ({ birthdays, loggedIn }) => {
   return (
     <>
       <div className="dash-text m-5 p-5">
-        {loggedIn && auth.currentUser?.displayName != null && (
-          <h1 className="text-center">
-            <CurrentTime format="welcome" />, {auth.currentUser?.displayName}.
-          </h1>
-        )}
+        <h1 className="text-center">
+          <CurrentTime format="welcome" />, {auth.currentUser?.displayName}.
+        </h1>
         <h1 className="display-2 text-center">
           <CurrentTime format="dddd" />,
           <br />
           <CurrentTime format="MMMM Do" />
         </h1>
         <hr />
-        <BirthdayMessageToday birthdays={birthdays} today={formattedDate} />
+        <BirthdayMessageToday
+          loggedIn={loggedIn}
+          birthdays={birthdays}
+          today={formattedDate}
+        />
         <BirthdayMessageMonth birthdays={birthdays} today={formattedDate} />
       </div>
     </>
