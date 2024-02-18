@@ -5,6 +5,7 @@ import CurrentTime, { formattedDate } from "./CurrentTime";
 import { auth } from "../firebase";
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
+import PersonalGreeting from "./PersonalGreeting";
 
 interface Birthday {
   id: string;
@@ -30,8 +31,9 @@ const Dashboard: React.FC<Props> = ({ birthdays, loggedIn }) => {
       <>
         <div className="dash-text m-5 p-5">
           <h1 className="text-center">
-            <CurrentTime format="welcome" />, {auth.currentUser?.displayName}.
+            <PersonalGreeting />
           </h1>
+
           <h1 className="display-2 text-center">
             <CurrentTime format="dddd" />,
             <br />
