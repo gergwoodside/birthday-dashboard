@@ -1,6 +1,7 @@
 import moment from "moment";
-import BirthdayMessage from "./BirthdayMessageToday";
-import CurrentTime from "./CurrentTime";
+import BirthdayMessageToday from "./BirthdayMessageToday";
+import BirthdayMessageMonth from "./BirthdayMessageMonth";
+import CurrentTime, { formattedDate } from "./CurrentTime";
 import { auth } from "../firebase";
 
 interface Birthday {
@@ -13,9 +14,6 @@ interface Props {
   birthdays: Birthday[];
   loggedIn: boolean;
 }
-
-const today = new Date();
-const formattedDate = moment(today).format();
 
 const Dashboard: React.FC<Props> = ({ birthdays, loggedIn }) => {
   return (
@@ -32,7 +30,8 @@ const Dashboard: React.FC<Props> = ({ birthdays, loggedIn }) => {
           <CurrentTime format="MMMM Do" />
         </h1>
         <hr />
-        <BirthdayMessage birthdays={birthdays} today={formattedDate} />
+        <BirthdayMessageToday birthdays={birthdays} today={formattedDate} />
+        <BirthdayMessageMonth birthdays={birthdays} today={formattedDate} />
       </div>
     </>
   );

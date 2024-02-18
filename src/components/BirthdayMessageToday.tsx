@@ -12,7 +12,7 @@ interface Props {
   today: string; // Assuming 'today' is a string in the format 'YYYY-MM-DD'
 }
 
-export const BirthdayMessage = ({ birthdays, today }: Props) => {
+export const BirthdayMessageToday = ({ birthdays, today }: Props) => {
   // Filter birthdays to find those that match 'today' and then map to JSX elements
   const todayBirthdays = birthdays.filter((person) => {
     return (
@@ -64,4 +64,4 @@ export const BirthdayMessage = ({ birthdays, today }: Props) => {
   );
 };
 
-export default BirthdayMessage;
+export default BirthdayMessageToday;
