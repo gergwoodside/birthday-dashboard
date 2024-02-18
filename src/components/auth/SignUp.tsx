@@ -5,11 +5,32 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, showError] = useState(false);
+
+  const errorMessage = () => {
+    return (
+      <div
+        className="alert alert-danger alert-dismissible fade show"
+        role="alert"
+      >
+        Hey, you already have an account! Log in above.
+        <button
+          type="button"
+          className="close"
+          data-dismiss="alert"
+          aria-label="Close"
+          onClick={() => showError(false)}
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    );
+  };
 
   const signUp = (event: FormEvent) => {
     event.preventDefault();
     createUserWithEmailAndPassword(auth, email, password).catch((error) =>
-      console.log(error)
+      showError(true)
     );
   };
 
@@ -17,6 +38,7 @@ const SignUp = () => {
     <div className="sign-in-container">
       <form onSubmit={signUp}>
         <h3 className="my-3">Register:</h3>
+        {error && errorMessage()}
         <input
           type="email"
           className="form-control"
