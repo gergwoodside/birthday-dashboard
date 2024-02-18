@@ -25,7 +25,6 @@ export const BirthdayMessageMonth = ({ birthdays, today }: Props) => {
 
   const birthdayMessages = todayBirthdays.map((person) => (
     <>
-      <h2 className="text-center pt-5">This month:</h2>
       <ul key={person.id} className="list-group">
         <li key={person.id} className="list-group-item">
           <h3 className="display-5 text-center">
@@ -39,7 +38,15 @@ export const BirthdayMessageMonth = ({ birthdays, today }: Props) => {
   ));
 
   // Return a fragment containing all matching birthday messages
-  return <>{birthdays.length !== 0 && birthdayMessages}</>;
+  return (
+    <>
+      {birthdays.length !== 0 && (
+        <>
+          <h2 className="text-center mt-3">This month:</h2> {birthdayMessages}
+        </>
+      )}
+    </>
+  );
 };
 
 export default BirthdayMessageMonth;
