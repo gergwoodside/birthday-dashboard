@@ -9,20 +9,8 @@ const SignUp = () => {
 
   const errorMessage = () => {
     return (
-      <div
-        className="alert alert-danger alert-dismissible fade show"
-        role="alert"
-      >
-        Hey, you already have an account! Log in above.
-        <button
-          type="button"
-          className="close"
-          data-dismiss="alert"
-          aria-label="Close"
-          onClick={() => showError(false)}
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div className="alert alert-danger" role="alert">
+        Invalid email address. Maybe you already have an account?
       </div>
     );
   };

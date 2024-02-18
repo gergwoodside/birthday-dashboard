@@ -9,20 +9,8 @@ const SignIn = () => {
 
   const errorMessage = () => {
     return (
-      <div
-        className="alert alert-danger alert-dismissible fade show"
-        role="alert"
-      >
+      <div className="alert alert-danger" role="alert">
         Sorry, that's not a valid login.
-        <button
-          type="button"
-          className="close"
-          data-dismiss="alert"
-          aria-label="Close"
-          onClick={() => showError(false)}
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
     );
   };
