@@ -40,7 +40,7 @@ const Navigation = ({ currentView, onSelectView, loggedIn }: Props) => {
               aria-selected="false"
               onClick={() => onSelectView("Configuration")}
             >
-              Configuration
+              Birthdays
             </button>
             <button
               className={
