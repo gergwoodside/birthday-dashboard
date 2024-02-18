@@ -82,6 +82,7 @@ function App() {
     const listen = onAuthStateChanged(auth, (user) => {
       user == null ? setBirthdays([]) : getBirthdayList();
       user == null ? setIsLoggedIn(false) : setIsLoggedIn(true);
+      setCurrentView("Dashboard");
     });
 
     return () => {
@@ -91,7 +92,11 @@ function App() {
 
   return (
     <>
-      <Navigation currentView={currentView} onSelectView={setCurrentView} />
+      <Navigation
+        loggedIn={isLoggedIn}
+        currentView={currentView}
+        onSelectView={setCurrentView}
+      />
       {currentView === "Configuration" && (
         <>
           <div className="birthday-form">
@@ -115,16 +120,10 @@ function App() {
       {currentView === "Dashboard" && (
         <Dashboard loggedIn={isLoggedIn} birthdays={birthdays} />
       )}
-      {currentView === "Account" && isLoggedIn == true && (
+      {currentView === "Account" && (
         <>
           <AuthDetails />
           <UpdateUser />
-        </>
-      )}
-      {currentView === "Account" && isLoggedIn == false && (
-        <>
-          <SignIn />
-          <SignUp />
         </>
       )}
     </>

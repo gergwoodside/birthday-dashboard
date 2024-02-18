@@ -3,6 +3,8 @@ import BirthdayMessageToday from "./BirthdayMessageToday";
 import BirthdayMessageMonth from "./BirthdayMessageMonth";
 import CurrentTime, { formattedDate } from "./CurrentTime";
 import { auth } from "../firebase";
+import SignIn from "./auth/SignIn";
+import SignUp from "./auth/SignUp";
 
 interface Birthday {
   id: string;
@@ -16,27 +18,36 @@ interface Props {
 }
 
 const Dashboard: React.FC<Props> = ({ birthdays, loggedIn }) => {
-  return (
-    <>
-      <div className="dash-text m-5 p-5">
-        <h1 className="text-center">
-          <CurrentTime format="welcome" />, {auth.currentUser?.displayName}.
-        </h1>
-        <h1 className="display-2 text-center">
-          <CurrentTime format="dddd" />,
-          <br />
-          <CurrentTime format="MMMM Do" />
-        </h1>
-        <hr />
-        <BirthdayMessageToday
-          loggedIn={loggedIn}
-          birthdays={birthdays}
-          today={formattedDate}
-        />
-        <BirthdayMessageMonth birthdays={birthdays} today={formattedDate} />
-      </div>
-    </>
-  );
+  if (loggedIn == false) {
+    return (
+      <>
+        <SignIn />
+        <SignUp />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <div className="dash-text m-5 p-5">
+          <h1 className="text-center">
+            <CurrentTime format="welcome" />, {auth.currentUser?.displayName}.
+          </h1>
+          <h1 className="display-2 text-center">
+            <CurrentTime format="dddd" />,
+            <br />
+            <CurrentTime format="MMMM Do" />
+          </h1>
+          <hr />
+          <BirthdayMessageToday
+            loggedIn={loggedIn}
+            birthdays={birthdays}
+            today={formattedDate}
+          />
+          <BirthdayMessageMonth birthdays={birthdays} today={formattedDate} />
+        </div>
+      </>
+    );
+  }
 };
 
 export default Dashboard;
