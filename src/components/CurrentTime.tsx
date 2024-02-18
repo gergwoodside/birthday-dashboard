@@ -15,11 +15,11 @@ const CurrentTime = ({ format }: Props) => {
     const timerId = setInterval(refreshClock, 1000);
   }, []);
   if (format == "welcome" && currentHour >= 3 && currentHour < 12) {
-    return "Good Morning";
+    return <>Good morning</>;
   } else if (format == "welcome" && currentHour >= 12 && currentHour < 15) {
-    return "Good Afternoon";
+    return <>Good afternoon</>;
   } else if (format == "welcome" && currentHour >= 15 && currentHour < 20) {
-    return "Good Evening";
+    return <>Good evening</>;
   } else {
     return <>{moment(date).format(format)}</>;
   }
