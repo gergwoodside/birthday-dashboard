@@ -18,6 +18,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import UpdateUser from "./components/auth/UpdateUser";
 
 interface Birthday {
   id: string;
@@ -28,6 +29,7 @@ interface Birthday {
 const today = new Date();
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentView, setCurrentView] = useState("Dashboard");
   const [birthdays, setBirthdays] = useState<Birthday[]>([]);
   const [person, setPerson] = useState({
@@ -54,6 +56,7 @@ function App() {
   };
 
   const getBirthdayList = async () => {
+    setIsLoggedIn(true);
     try {
       const data = await getDocs(
         query(
@@ -79,6 +82,7 @@ function App() {
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
       user == null ? setBirthdays([]) : getBirthdayList();
+      user == null ? setIsLoggedIn(false) : setIsLoggedIn(true);
     });
 
     return () => {
@@ -108,12 +112,19 @@ function App() {
           </div>
         </>
       )}
-      {currentView === "Dashboard" && <Dashboard birthdays={birthdays} />}
-      {currentView === "Account" && (
+      {currentView === "Dashboard" && (
+        <Dashboard loggedIn={isLoggedIn} birthdays={birthdays} />
+      )}
+      {currentView === "Account" && isLoggedIn == true && (
+        <>
+          <AuthDetails />
+          <UpdateUser />
+        </>
+      )}
+      {currentView === "Account" && isLoggedIn == false && (
         <>
           <SignIn />
           <SignUp />
-          <AuthDetails />
         </>
       )}
     </>

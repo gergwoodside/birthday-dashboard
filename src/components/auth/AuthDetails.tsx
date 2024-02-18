@@ -4,7 +4,6 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const AuthDetails = () => {
   const [authUser, setAuthUser] = useState(false);
-
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -21,6 +20,7 @@ const AuthDetails = () => {
 
   const userSignOut = () => {
     signOut(auth).then(() => console.log("signed out"));
+    setAuthUser(false);
   };
 
   return (
@@ -36,7 +36,7 @@ const AuthDetails = () => {
         </div>
       ) : (
         <>Signed Out</>
-      )}{" "}
+      )}
     </div>
   );
 };
