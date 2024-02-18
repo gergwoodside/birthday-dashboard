@@ -29,7 +29,9 @@ const AuthDetails = () => {
         <div>
           <p>Signed in as {auth.currentUser?.email}</p>
           <p>
-            <button onClick={userSignOut}>Sign Out</button>
+            <button onClick={userSignOut} className="btn btn-danger">
+              Sign Out
+            </button>
           </p>
         </div>
       ) : (

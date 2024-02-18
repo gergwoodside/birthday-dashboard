@@ -8,29 +8,32 @@ const SignUp = () => {
 
   const signUp = (event: FormEvent) => {
     event.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => console.log(error));
+    createUserWithEmailAndPassword(auth, email, password).catch((error) =>
+      console.log(error)
+    );
   };
+
   return (
     <div className="sign-in-container">
       <form onSubmit={signUp}>
-        <h1>Register:</h1>
+        <h3 className="my-3">Register:</h3>
         <input
           type="email"
+          className="form-control"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></input>
         <input
           type="password"
+          className="form-control"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button type="submit">Log In</button>
+        <button type="submit" className="btn btn-primary my-3">
+          Log In
+        </button>
       </form>
     </div>
   );

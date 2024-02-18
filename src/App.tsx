@@ -14,7 +14,8 @@ import {
   getDocs,
   doc,
 } from "firebase/firestore";
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 interface Birthday {
   id: string;
@@ -38,6 +39,7 @@ function App() {
     await addDoc(birthdayCollectionRef, {
       personName: person.name,
       date: person.date,
+      createdById: auth?.currentUser?.uid,
     });
     getBirthdayList();
     setPerson({ name: "", date: "" }); // Reset the person object
@@ -59,12 +61,22 @@ function App() {
       console.log({ filteredData });
       setBirthdays(filteredData);
     } catch (err) {
-      console.error(err);
+      console.error("this fucking thing sucks", err);
     }
   };
 
   useEffect(() => {
-    getBirthdayList();
+    getBirthdayList;
+  });
+
+  useEffect(() => {
+    const listen = onAuthStateChanged(auth, (user) => {
+      user == null ? setBirthdays([]) : getBirthdayList();
+    });
+
+    return () => {
+      listen();
+    };
   }, []);
 
   return (
