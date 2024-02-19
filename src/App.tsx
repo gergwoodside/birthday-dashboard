@@ -14,6 +14,7 @@ import {
   doc,
   query,
   where,
+  updateDoc,
 } from "firebase/firestore";
 import { auth, db } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -52,6 +53,12 @@ function App() {
     getBirthdayList();
   };
 
+  const handleEdit = async (id: string, newData: Partial<Birthday>) => {
+    const birthdayDoc = doc(db, "birthdays", id);
+    await updateDoc(birthdayDoc, newData);
+    getBirthdayList();
+  };
+
   const getBirthdayList = async () => {
     setIsLoggedIn(true);
     try {
@@ -73,8 +80,8 @@ function App() {
   };
 
   useEffect(() => {
-    auth.currentUser != null && getBirthdayList;
-  });
+    auth.currentUser != null && getBirthdayList();
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -110,7 +117,11 @@ function App() {
           </div>
           <div className="birthdayList">
             {birthdays.length > 0 && (
-              <BirthdayList birthdays={birthdays} onDelete={handleDelete} />
+              <BirthdayList
+                birthdays={birthdays}
+                onDelete={handleDelete}
+                onSave={handleEdit}
+              />
             )}
           </div>
         </>

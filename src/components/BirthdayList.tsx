@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import moment from "moment";
 
 interface Birthday {
@@ -9,9 +10,25 @@ interface Birthday {
 interface Props {
   birthdays: Birthday[];
   onDelete: (id: string) => void;
+  onSave: (id: string, newData: Partial<Birthday>) => void;
 }
 
-const BirthdayList = ({ birthdays, onDelete }: Props) => {
+const BirthdayList = ({ birthdays, onDelete, onSave }: Props) => {
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editedName, setEditedName] = useState("");
+  const [editedDate, setEditedDate] = useState("");
+
+  const handleEdit = (id: string, name: string, date: string) => {
+    setEditingId(id);
+    setEditedName(name);
+    setEditedDate(date);
+  };
+
+  const handleSave = (id: string) => {
+    onSave(id, { personName: editedName, date: editedDate });
+    setEditingId(null);
+  };
+
   return (
     <div>
       <table className="table table-bordered">
@@ -25,8 +42,28 @@ const BirthdayList = ({ birthdays, onDelete }: Props) => {
         <tbody>
           {birthdays.map((birthday) => (
             <tr key={birthday.id}>
-              <td>{birthday.personName}</td>
-              <td>{moment(birthday.date).format("L")}</td>
+              <td>
+                {editingId === birthday.id ? (
+                  <input
+                    type="text"
+                    value={editedName}
+                    onChange={(e) => setEditedName(e.target.value)}
+                  />
+                ) : (
+                  birthday.personName
+                )}
+              </td>
+              <td>
+                {editingId === birthday.id ? (
+                  <input
+                    type="date"
+                    value={editedDate}
+                    onChange={(e) => setEditedDate(e.target.value)}
+                  />
+                ) : (
+                  moment(birthday.date).format("L")
+                )}
+              </td>
               <td>
                 <button
                   onClick={() => onDelete(birthday.id)}
@@ -34,6 +71,27 @@ const BirthdayList = ({ birthdays, onDelete }: Props) => {
                 >
                   Delete
                 </button>
+                {editingId === birthday.id ? (
+                  <button
+                    onClick={() => handleSave(birthday.id)}
+                    className="btn btn-success mx-3"
+                  >
+                    Save
+                  </button>
+                ) : (
+                  <button
+                    onClick={() =>
+                      handleEdit(
+                        birthday.id,
+                        birthday.personName,
+                        birthday.date
+                      )
+                    }
+                    className="btn btn-warning mx-3"
+                  >
+                    Edit
+                  </button>
+                )}
               </td>
             </tr>
           ))}
