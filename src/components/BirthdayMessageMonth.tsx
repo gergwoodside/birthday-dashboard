@@ -14,7 +14,7 @@ interface Props {
 
 export const BirthdayMessageMonth = ({ birthdays, today }: Props) => {
   // Filter birthdays to find those that match 'today' and then map to JSX elements
-  const todayBirthdays = birthdays.filter((person) => {
+  const thisMonthBirthdays = birthdays.filter((person) => {
     return (
       moment(person.date).format("M MM") === moment(today).format("M MM") &&
       moment(moment(person.date).format("MM-DD")).isAfter(
@@ -23,7 +23,7 @@ export const BirthdayMessageMonth = ({ birthdays, today }: Props) => {
     );
   });
 
-  const birthdayMessages = todayBirthdays.map((person) => (
+  const birthdayMessages = thisMonthBirthdays.map((person) => (
     <>
       <ul key={person.id} className="list-group">
         <li key={person.id} className="list-group-item">
@@ -40,7 +40,7 @@ export const BirthdayMessageMonth = ({ birthdays, today }: Props) => {
   // Return a fragment containing all matching birthday messages
   return (
     <>
-      {birthdays.length !== 0 && (
+      {thisMonthBirthdays.length !== 0 && (
         <>
           <h2 className="text-center mt-3">This month:</h2> {birthdayMessages}
         </>
