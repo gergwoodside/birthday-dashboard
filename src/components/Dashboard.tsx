@@ -1,8 +1,6 @@
-import moment from "moment";
 import BirthdayMessageToday from "./BirthdayMessageToday";
 import BirthdayMessageMonth from "./BirthdayMessageMonth";
 import CurrentTime, { formattedDate } from "./CurrentTime";
-import { auth } from "../firebase";
 import SignIn from "./auth/SignIn";
 import SignUp from "./auth/SignUp";
 import PersonalGreeting from "./PersonalGreeting";

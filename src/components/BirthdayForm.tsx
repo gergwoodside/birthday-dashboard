@@ -1,4 +1,3 @@
-import moment from "moment";
 import React, { FormEvent } from "react";
 
 interface Person {
