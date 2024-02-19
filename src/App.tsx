@@ -5,8 +5,6 @@ import Dashboard from "./components/Dashboard";
 import { formattedDate } from "./components/CurrentTime";
 import BirthdayList from "./components/BirthdayList";
 import BirthdayForm from "./components/BirthdayForm";
-import SignIn from "./components/auth/SignIn";
-import SignUp from "./components/auth/SignUp";
 import AuthDetails from "./components/auth/AuthDetails";
 import {
   addDoc,
