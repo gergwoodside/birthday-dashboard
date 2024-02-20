@@ -37,6 +37,7 @@ const BirthdayList = ({ birthdays, onDelete, onSave }: Props) => {
             <th>Name</th>
             <th>Birthday</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
