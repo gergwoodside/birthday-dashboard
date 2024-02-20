@@ -23,7 +23,7 @@ const CurrentTime = ({ format }: Props) => {
     return <>Good afternoon</>;
   } else if (format == "welcome" && currentHour >= 17 && currentHour < 20) {
     return <>Good evening</>;
-  } else if (format == "welcome" && currentHour >= 20 && currentHour < 4) {
+  } else if (format == "welcome") {
     return <>Good night</>;
   } else {
     return <>{moment(date).format(format)}</>;
