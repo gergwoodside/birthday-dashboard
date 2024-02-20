@@ -32,11 +32,13 @@ const Dashboard: React.FC<Props> = ({ birthdays, loggedIn }) => {
             <PersonalGreeting />
           </h1>
 
-          <h1 className="display-2 text-center">
-            <CurrentTime format="dddd" />,
-            <br />
-            <CurrentTime format="MMMM Do" />
-          </h1>
+          <div className="date-container-dash">
+            <h1 className="display-2 text-center">
+              <CurrentTime format="dddd" />,
+              <br />
+              <CurrentTime format="MMMM Do" />
+            </h1>
+          </div>
           <hr />
           <BirthdayMessageToday
             loggedIn={loggedIn}

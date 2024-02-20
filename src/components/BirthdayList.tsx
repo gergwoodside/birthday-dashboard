@@ -90,7 +90,7 @@ const BirthdayList = ({ birthdays, onDelete, onSave }: Props) => {
                         birthday.date
                       )
                     }
-                    className="btn btn-warning mx-3"
+                    className="btn btn-warning"
                   >
                     Edit
                   </button>

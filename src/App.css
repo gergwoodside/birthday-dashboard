@@ -7,3 +7,17 @@
     color: rgb(145, 141, 141);
     font-weight: 200;
 }
+
+.table-container {
+    border-style: solid;
+}
+
+.date-container-dash {
+    align-self: center;
+}
+
+td {
+    vertical-align: baseline;
+    text-align: center;
+}
+
