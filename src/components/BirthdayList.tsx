@@ -31,7 +31,7 @@ const BirthdayList = ({ birthdays, onDelete, onSave }: Props) => {
 
   return (
     <div>
-      <table className="table table-bordered">
+      <table className="table table-bordered table-container">
         <thead>
           <tr>
             <th>Name</th>
@@ -55,11 +55,19 @@ const BirthdayList = ({ birthdays, onDelete, onSave }: Props) => {
               </td>
               <td>
                 {editingId === birthday.id ? (
-                  <input
-                    type="date"
-                    value={editedDate}
-                    onChange={(e) => setEditedDate(e.target.value)}
-                  />
+                  <>
+                    <input
+                      type="date"
+                      value={editedDate}
+                      onChange={(e) => setEditedDate(e.target.value)}
+                    />
+                    <button
+                      onClick={() => handleSave(birthday.id)}
+                      className="btn btn-success mx-3"
+                    >
+                      Update
+                    </button>
+                  </>
                 ) : (
                   moment(birthday.date).format("L")
                 )}
@@ -71,14 +79,9 @@ const BirthdayList = ({ birthdays, onDelete, onSave }: Props) => {
                 >
                   Delete
                 </button>
-                {editingId === birthday.id ? (
-                  <button
-                    onClick={() => handleSave(birthday.id)}
-                    className="btn btn-success mx-3"
-                  >
-                    Save
-                  </button>
-                ) : (
+              </td>
+              <td>
+                {editingId !== birthday.id && (
                   <button
                     onClick={() =>
                       handleEdit(
